@@ -4,24 +4,19 @@
 #include <Adafruit_Sensor.h>
 #include <Wire.h>
 int buzzer = 7;
-int led_status = HIGH;
 int incomingByte = 0;
 
 Adafruit_MPU6050 mpu;
 
 void setup(void) {
   Serial.begin(9600);
-
-  pinMode(LED_BUILTIN, OUTPUT);
   pinMode(buzzer, OUTPUT);
-  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
   digitalWrite(buzzer, LOW);
-  led_status = HIGH;
 
   while (!Serial)
     delay(10); 
 
-  Serial.println("Adafruit MPU6050 test!");
+  Serial.println("MPU6050 test!");
 
   // Try to initialize!
   if (!mpu.begin()) {
@@ -35,12 +30,10 @@ void setup(void) {
 
 void loop() {
 
-
   if (Serial.available() > 0) 
     {
     // read the incoming byte:
     incomingByte = Serial.read();
-      /* Print out the values */
     
       int x1 = a.acceleration.x;
       int y1 = a.acceleration.y;
